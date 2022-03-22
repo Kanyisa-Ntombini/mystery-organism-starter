@@ -100,4 +100,4 @@ const createManyOrganisms = num => {
 }
 let organismsToStudy = createManyOrganisms(30);
 
-module.exports = {returnRandBase};
+module.exports = {returnRandBase, mockUpStrand, pAequorFactory};
