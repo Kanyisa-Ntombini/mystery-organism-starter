@@ -1,8 +1,7 @@
 const assert = require('assert');
 const main = require('../main');
 
-let arrDna;
-let pAequorObj;
+let arrDna, pAequorObj, organismsArr;
 
 describe('The returnRandBase function ', () => {
   it ('returns "A", "C", "G" or "T"', () => {
@@ -39,16 +38,35 @@ describe('The pAequor factory function', () => {
       let specimenNum = pAequorObj.specimenNum;
       assert.ok(specimenNum === 10);
     });
-    it('dna', () => {
+    /*it('dna', () => {
       let dna = pAequorObj.dna;
       let fakeDnaAnswer = ['A', 'C', 'G', 'T', 'T', 'G', 'A', 'C', 'T', 'G', 'G', 'T', 'A', 'A', 'G'];
       assert.ok(dna === fakeDnaAnswer);
-    })
+    })*/
   });
 
-  describe('should check if the following methods work:', () => {
+  /*describe('should check if the following methods work:', () => {
     it('', () => {
 
     });
-  })
+  })*/
+});
+
+describe('The organismsThatWillSurvive function creates a specified number of organisms(objects) that have a chance of survival', () => {
+  before(() => {
+    organismsArr = main.organismsThatWillSurvive(5);
+  });
+  it('checks if there are 5 organisms in the array', ()=> {
+    let arrLength = organismsArr.length;
+    assert.ok(arrLength === 5);
+  });
+  it('checks if the willLikelySurvive function of each organism(object) returns true', () => {
+    let countCorrectMatches = 0;
+    for (let obj of organismsArr) {
+      if (obj.willLikelySurvive() === true) {
+        countCorrectMatches ++;
+      }
+    }
+    assert.ok(countCorrectMatches === 5);
+  });
 });

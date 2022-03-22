@@ -75,29 +75,47 @@ const pAequorFactory = (number, arrOfDnaBases) => {
 
     complementStrand() {
       /* Last optional exercise */
+      let complementDnaStrand = [];
+      for (let base of this.dna) {
+        if (base === 'A') {
+          complementDnaStrand.push('T');
+        } else if (base === 'T') {
+          complementDnaStrand.push('A');
+        } else if (base === 'C') {
+          complementDnaStrand.push('G');
+        } else if (base === 'G') {
+          complementDnaStrand.push('C');
+        }
+      }
+      console.log(this.dna);
+      console.log(complementDnaStrand);
+
       return 'complement function works';
     }
   }
   return organismObj;
 }
 
+/* The organismsThatWillSurvive function takes in a number as a parameter. An array is created
+and pAequor objects that return true for willLikelySurvive are created and 
+inserted into the array. The number of organisms created is determined by the parameter of the function. */
+const organismsThatWillSurvive = num => {
+  let arrOrganisms = [];
+  let i = 0;
+  while (i < num) {
+    let createOrganism = pAequorFactory(i+1, mockUpStrand());
+    if (createOrganism.willLikelySurvive() === true) {
+      arrOrganisms.push(createOrganism);
+      i++;
+    }
+  }
+  return arrOrganisms;
+}
+
 let base1 = mockUpStrand();
 let base2 = mockUpStrand();
 let pAequor1 = pAequorFactory(1, base1);
 let pAequor2 = pAequorFactory(2, base2);
-console.log(pAequor1.willLikelySurvive());
+console.log(pAequor1.complementStrand());
 
-/* The createManyOrganisms takes in a number as a parameter. An array is created
-and pAequor objects that return true for willLikelySurvive are created and 
-inserted into the array. The number of organisms created is determined by the parameter of the function. */
-const createManyOrganisms = num => {
-  let arrOrganisms = []
-  for (let i=0; i<num; i++) {
-    let objToPush = pAequorFactory(i+1, mockUpStrand());
-    arrOrganisms.push(objToPush);
-  }
-  return arrOrganisms;
-}
-let organismsToStudy = createManyOrganisms(30);
-
-module.exports = {returnRandBase, mockUpStrand, pAequorFactory};
+module.exports = {returnRandBase, mockUpStrand, pAequorFactory, organismsThatWillSurvive};
