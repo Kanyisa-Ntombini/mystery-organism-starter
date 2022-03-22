@@ -71,6 +71,11 @@ const pAequorFactory = (number, arrOfDnaBases) => {
         return true;
       }
       return false;
+    },
+
+    complementStrand() {
+      /* Last optional exercise */
+      return 'complement function works';
     }
   }
   return organismObj;
@@ -83,8 +88,8 @@ let pAequor2 = pAequorFactory(2, base2);
 console.log(pAequor1.willLikelySurvive());
 
 /* The createManyOrganisms takes in a number as a parameter. An array is created
-and pAequor objects are created and inserted into the array. The number of organisms
-created is determined by the parameter of the function. */
+and pAequor objects that return true for willLikelySurvive are created and 
+inserted into the array. The number of organisms created is determined by the parameter of the function. */
 const createManyOrganisms = num => {
   let arrOrganisms = []
   for (let i=0; i<num; i++) {
@@ -94,3 +99,5 @@ const createManyOrganisms = num => {
   return arrOrganisms;
 }
 let organismsToStudy = createManyOrganisms(30);
+
+module.exports = {returnRandBase};
