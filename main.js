@@ -74,7 +74,9 @@ const pAequorFactory = (number, arrOfDnaBases) => {
     },
 
     complementStrand() {
-      /* Last optional exercise */
+      /* Produces the complement DNA strand for the current organism obj. 
+      That means A is the complement of T and vice versa and C is the complement
+      of G and vice versa */
       let complementDnaStrand = [];
       for (let base of this.dna) {
         if (base === 'A') {
@@ -116,6 +118,6 @@ let base1 = mockUpStrand();
 let base2 = mockUpStrand();
 let pAequor1 = pAequorFactory(1, base1);
 let pAequor2 = pAequorFactory(2, base2);
-console.log(pAequor1.complementStrand());
+//console.log(pAequor1.complementStrand());
 
 module.exports = {returnRandBase, mockUpStrand, pAequorFactory, organismsThatWillSurvive};
