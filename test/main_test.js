@@ -1,72 +1,120 @@
 const assert = require('assert');
 const main = require('../main');
 
-let arrDna, pAequorObj, organismsArr;
-
-describe('The returnRandBase function ', () => {
+describe('The returnRandBase function', () => {
   it ('returns "A", "C", "G" or "T"', () => {
-    let result = main.returnRandBase()
-    assert.ok(result === 'A' || result === 'C' || result === 'G' || result === 'T');
+    //setup
+    const inputBase = main.returnRandBase();
+    const expectedResult = true;
+
+    //exercise
+    const result = inputBase === 'A' || inputBase === 'C' || inputBase === 'G' || inputBase === 'T';
+
+    //verify
+    assert.strictEqual(result, expectedResult);
   });
 });
 
+
 describe('The mockUp function ', () => {
+  //setup
+  let inputArr, expectedResult;
+
   before(() => {
-    arrDna = main.mockUpStrand();
+    inputArr = main.mockUpStrand();
+    expectedResult = 15;
   });
   it ('returns an array of 15 items', function() {
-    assert.ok(arrDna.length === 15);
+    //exercise
+    const result = inputArr.length;
+
+    //verify
+    assert.strictEqual(result, expectedResult);
   });
   it('contains "A", "C", "G" or "T" for each item in the array', function() {
+    //setup
     let correctMatches = 0;
-    for (let base of arrDna) {
+
+    //exercise
+    for (let base of inputArr) {
       if (base === 'A' || base === 'C' || base === 'G' || base === 'T') {
         correctMatches ++;
       }
     }
-    assert.ok(correctMatches === 15);
+
+    //verify
+    assert.strictEqual(correctMatches, expectedResult);
   });
 });
 
 describe('The pAequor factory function', () => {
+  //set up
+  let pAequorObj, dna, num;
   before(() => {
-    pAequorObj = main.pAequorFactory(10, ['A', 'C', 'G', 'T', 'T', 'G', 'A', 'C', 'T', 'G', 'G', 'T', 'A', 'A', 'G']);
+    dna = ['A', 'C', 'G', 'T', 'T', 'G', 'A', 'C', 'T', 'G', 'G', 'T', 'A', 'A', 'G'];
+    num = 10;
+    pAequorObj = main.pAequorFactory(num, dna);
   });
 
   describe('should return the following correct properties for the pAqueory object instances:', () => {
-    it('specimen number', () => {
-      let specimenNum = pAequorObj.specimenNum;
-      assert.ok(specimenNum === 10);
+    it('.specimenNum', () => {
+      //setup
+      const expectedResult = 10;
+
+      //exercise
+      const result = pAequorObj.specimenNum;
+      
+      //verify
+      assert.strictEqual(result, expectedResult);
     });
-    /*it('dna', () => {
-      let dna = pAequorObj.dna;
-      let fakeDnaAnswer = ['A', 'C', 'G', 'T', 'T', 'G', 'A', 'C', 'T', 'G', 'G', 'T', 'A', 'A', 'G'];
-      assert.ok(dna === fakeDnaAnswer);
-    })*/
+    it('.dna', () => {
+      //setup
+      let expectedResult = ['A', 'C', 'G', 'T', 'T', 'G', 'A', 'C', 'T', 'G', 'G', 'T', 'A', 'A', 'G'];
+      
+      //exercise
+      let result = pAequorObj.dna;
+      
+      assert.deepEqual(result, expectedResult);
+    });
   });
 
   /*describe('should check if the following methods work:', () => {
+    //mututate()
+    //compareDNA(obj1, obj2)
+    //willLikelySurvive()
+    //completentStrand()
+
     it('', () => {
 
     });
   })*/
 });
 
-describe('The organismsThatWillSurvive function creates a specified number of organisms(objects) that have a chance of survival', () => {
+describe('The organismsThatWillSurvive function ', () => {
+  //set up
+  let inputArr;
   before(() => {
-    organismsArr = main.organismsThatWillSurvive(5);
+    inputArr = main.organismsThatWillSurvive(5);
   });
-  it('checks if there are 5 organisms in the array', ()=> {
-    let arrLength = organismsArr.length;
-    assert.ok(arrLength === 5);
+  it('returns 5 organisms that have a chance of survival', ()=> {
+    //setup
+    const expectedResult = 5;
+    //exercise
+    let result = inputArr.length;
+    assert.strictEqual(result, expectedResult);
   });
-  it('checks if the willLikelySurvive function of each organism(object) returns true', () => {
+  
+  it('all willLikelySurvive methods return true', () => {
+    //setup
+    const expectedResult = 5;
     let countCorrectMatches = 0;
-    for (let obj of organismsArr) {
+    //exercise
+    for (let obj of inputArr) {
       if (obj.willLikelySurvive() === true) {
         countCorrectMatches ++;
       }
     }
-    assert.ok(countCorrectMatches === 5);
+    //verify
+    assert.strictEqual(countCorrectMatches, expectedResult);
   });
 });
