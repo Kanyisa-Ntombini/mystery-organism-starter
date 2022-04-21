@@ -89,10 +89,11 @@ const pAequorFactory = (number, arrOfDnaBases) => {
           complementDnaStrand.push('C');
         }
       }
-      console.log(this.dna);
-      console.log(complementDnaStrand);
+      //console.log(this.dna);
+      //console.log(complementDnaStrand);
+      return complementDnaStrand;
 
-      return 'complement function works';
+      //return 'complement function works';
     }
   }
   return organismObj;
@@ -118,6 +119,25 @@ let base1 = mockUpStrand();
 let base2 = mockUpStrand();
 let pAequor1 = pAequorFactory(1, base1);
 let pAequor2 = pAequorFactory(2, base2);
-//console.log(pAequor1.complementStrand());
+
+console.log();
+console.log(`Specimen number: ${pAequor1.specimenNum}`);
+console.log(`DNA: ${pAequor1.dna}`);
+console.log(`Mutatated Dna: ${pAequor1.mutate()}`);
+console.log(`Completementary strand: ${pAequor1.complementStrand()}`);
+
+console.log();
+console.log(`Specimen number: ${pAequor2.specimenNum}`);
+console.log(`DNA: ${pAequor2.dna}`);
+console.log(`Mutatated Dna: ${pAequor2.mutate()}`);
+console.log(`Completementary strand: ${pAequor2.complementStrand()}`);
+
+console.log();
+pAequor1.compareDNA(pAequor1, pAequor2);
+
+console.log();
+const organismsArr = organismsThatWillSurvive(5);
+console.log('Creating organisms that have a high chance of survival:');
+organismsArr.forEach(element => console.log(element.dna));
 
 module.exports = {returnRandBase, mockUpStrand, pAequorFactory, organismsThatWillSurvive};
