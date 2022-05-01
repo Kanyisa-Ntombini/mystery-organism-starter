@@ -1,10 +1,11 @@
 const assert = require('assert');
-const main = require('../main');
+const mysteryOrganism = require('../main');
+const {returnRandBase, mockUpStrand, pAequorFactory, organismsThatWillSurvive} = mysteryOrganism;
 
 describe('The returnRandBase function', () => {
   it ('returns "A", "C", "G" or "T"', () => {
     //setup
-    const inputBase = main.returnRandBase();
+    const inputBase = returnRandBase();
     const expectedResult = true;
 
     //exercise
@@ -15,13 +16,12 @@ describe('The returnRandBase function', () => {
   });
 });
 
-
 describe('The mockUp function ', () => {
   //setup
   let inputArr, expectedResult;
 
   before(() => {
-    inputArr = main.mockUpStrand();
+    inputArr = mockUpStrand();
     expectedResult = 15;
   });
   it ('returns an array of 15 items', function() {
@@ -53,7 +53,7 @@ describe('The pAequor factory function', () => {
   before(() => {
     dna = ['A', 'C', 'G', 'T', 'T', 'G', 'A', 'C', 'T', 'G', 'G', 'T', 'A', 'A', 'G'];
     num = 10;
-    pAequorObj = main.pAequorFactory(num, dna);
+    pAequorObj = pAequorFactory(num, dna);
   });
 
   describe('should return the following correct properties for the pAqueory object instances:', () => {
@@ -87,14 +87,14 @@ describe('The pAequor factory function', () => {
     it('', () => {
 
     });
-  })*/
+  });*/
 });
 
 describe('The organismsThatWillSurvive function ', () => {
   //set up
   let inputArr;
   before(() => {
-    inputArr = main.organismsThatWillSurvive(5);
+    inputArr = organismsThatWillSurvive(5);
   });
   it('returns 5 organisms that have a chance of survival', ()=> {
     //setup

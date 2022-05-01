@@ -115,6 +115,8 @@ const organismsThatWillSurvive = num => {
   return arrOrganisms;
 }
 
+//Tests
+/*
 let base1 = mockUpStrand();
 let base2 = mockUpStrand();
 let pAequor1 = pAequorFactory(1, base1);
@@ -138,6 +140,6 @@ pAequor1.compareDNA(pAequor1, pAequor2);
 console.log();
 const organismsArr = organismsThatWillSurvive(5);
 console.log('Creating organisms that have a high chance of survival:');
-organismsArr.forEach(element => console.log(element.dna));
+organismsArr.forEach(element => console.log(element.dna));*/
 
 module.exports = {returnRandBase, mockUpStrand, pAequorFactory, organismsThatWillSurvive};
